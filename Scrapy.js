@@ -4,6 +4,8 @@
  */
 var eventproxy = require('eventproxy');
 var async = require('async');
+// 日志记录
+var log4js = require( 'log4js' );
 
 var conf = require('./config/config.js');
 var task = require('./Task.js');
@@ -11,6 +13,9 @@ var downloader = require('./Downloader.js');
 
 var pages = [];// 下载url池
 var counter = 0;// 并发计数器
+
+log4js.configure(conf.logConfigure);
+var logger = log4js.getLogger('scrapy');
 
 /**
  * 目录生成
@@ -57,13 +62,14 @@ function MainProcess (arr) {
             urls.forEach(function (url) {
                 task.RegisterPicDownloadTask(url, conf.store_dictory, function(){
                     ep.emit('finish_img');
-                    console.log(url +' done!');
+                    logger.info(url);
+                    // console.log(url +' done!');
                 });
             });
 
         },function (err, result) {
             if(!err){
-               console.log('finished!');
+                logger.info('finished');
             }
         });
     });
@@ -73,7 +79,8 @@ function MainProcess (arr) {
         downloader.HTMLDownloader(single_page).then(function (body) {
             ep.emit('down_img', [single_page, body]);
         },function (err) {
-            console.log(error);
+            // console.log(error);
+            logger.error(url);
             console.log(url+"\t下载页面出错");
         })
     });
