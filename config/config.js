@@ -6,24 +6,24 @@ module.exports = {
     // 爬虫名称
     name: "豆瓣",
     /*------------------ 页面配置 -------------------*/
-    allowed_domains: 'https://movie.douban.com',// 网站域
-    start_url : 'https://movie.douban.com/tag/%E5%8A%A8%E7%94%BB', // 开始爬取的网址列表
+    allowed_domains: 'http://jandan.net',// 网站域
+    start_url : 'http://jandan.net/pic', // 开始爬取的网址列表 注意不要加最后的一个/
     
     /*------------------ 分页配置 ------------------*/
-    page_multi_mode: false,// 单多页开关 true:多页 false:单页
+    page_multi_mode: true,// 单多页开关 true:多页 false:单页
     page_reg: "page-%d%",// 分页模式
-    start_page: 9409,
-    total_page: 3,
+    start_page: 1836,
+    total_page: 30,
     
     /*------------------ 存储配置 ------------------*/
     store_base: 'resource',
-    store_dictory: 'douban',
+    store_dictory: 'jiandan',
 
     /*------------------ 选择器配置 ----------------*/
     // 如果是图片匹配到请匹配到<img>
     
-    img_selector: '.item .nbg img',// 豆瓣img
-    text_selector: '.item .pl',// 豆瓣 text
+    img_selector: '.text p img',// img 选择器
+    // text_selector: '.item .pl',// text 选择器
     
     // img_selector: '.inner_wrapper_img div a img',
   
