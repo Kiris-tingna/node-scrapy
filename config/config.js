@@ -12,8 +12,8 @@ module.exports = {
     /*------------------ 分页配置 ------------------*/
     page_multi_mode: true,// 单多页开关 true:多页 false:单页
     page_reg: "page-%d%",// 分页模式
-    start_page: 1836,
-    total_page: 30,
+    start_page: 265,
+    total_page: 6,
     
     /*------------------ 存储配置 ------------------*/
     store_base: 'resource',
